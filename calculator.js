@@ -1,17 +1,39 @@
 const readline = require('readline-sync');
-console.log('Welcome to Calculator!');
+
+function prompt(message) {
+  console.log(`=> ${message}`)
+}
+
+//Returns true if the number is not a number.
+function invalidNumber(number) {
+  return Number.isNaN(Number(number));
+}
+
+prompt('Welcome to Calculator!');
 
 //Ask the user for the first operand.
-console.log('Please enter the first number:');
+prompt('Please enter the first number: ');
 let numberOne = readline.question();
+while(invalidNumber(numberOne)) {
+  prompt('Please input a valid number: ');
+  numberOne = readline.question();
+};
 
 //Ask the user for the second operand.
-console.log('Please enter the second number:');
+prompt('Please enter the second number: ');
 let numberTwo = readline.question();
+while(invalidNumber(numberTwo)) {
+  prompt('Please input a valid number: ');
+  numberTwo = readline.question();
+};
 
 //Ask the user for the operation.
-console.log('Please select the operator:\n1) Add\n2) Subtract\n3) Multiply\n4) Divide');
+prompt('Please select the operator:\n1) Add\n2) Subtract\n3) Multiply\n4) Divide');
 let operator = readline.question();
+while(invalidOperator(operator)) {
+  prompt('Please input a valid operator: ');
+  operator = readline.question();
+};
 
 //Evaluate the expression built from the user.
 let result;
@@ -32,4 +54,4 @@ switch (operator) {
     break;
 };
 
-console.log(`The result is ${result}.`);
+prompt('The result is ' + result + '.');
